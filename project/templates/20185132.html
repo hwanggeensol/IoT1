@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HOME NETWORK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- css 파일 지정-->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>HOME IoT</h2>
+        </div>
+        <div class="main">
+            <div>
+                <button id='btn' onclick="led()">LED ON</button>
+            </div>
+            <div>
+                <button onclick="music()">MUSIC</button>
+            </div>
+        </div>
+        <div id="result">
+
+        </div>
+    </div>
+    <script>
+        function led(){
+            
+            fetch("/led")                                                    /* 해당 경로 파일을 실행 */
+            .then(response=> { console.log(response); return response.text()})
+            .then(data=> {
+                console.log(data);
+                let result = document.querySelector("#result");                 /* result 영역을 알아내고 */
+                if(data=="on"){                                                 /* "ok" 가 돌아오면 이에 따라 적합한 결과 출력해 줌 */
+                    result.innerHTML = "<h1>LED is runinng</h1>";
+                    const btnElement = document.getElementById('btn');
+                    const html = '<div> LED OFF </div>';
+                    btnElement.innerHTML = html;
+                }
+                //else{
+                //    result.innerHTML = "<h1>error</h1>";
+                //}
+                if(data=="off"){                                                 /* "ok" 가 돌아오면 이에 따라 적합한 결과 출력해 줌 */
+                    result.innerHTML = "<h1>LED is stopping</h1>";
+                    const btnElement = document.getElementById('btn');
+                    const html = '<div> LED ON </div>';
+                    btnElement.innerHTML = html;
+                }
+            });
+        }
+    
+        function music(){
+            fetch("/music")
+            .then(response=> response.text())
+            .then(data=> {
+                console.log(data);
+                let result = document.querySelector("#result");
+                if(data=="ok"){  
+                    result.innerHTML = "<h1>MUSIC is runinng</h1>";
+                }
+                //else{
+                //    result.innerHTML = "<h1>error</h1>";
+                //}
+            });
+        }
+    </script>
+</body>
+</html>
