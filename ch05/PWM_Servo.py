@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import time
 
 #서보모터를 PWM으로 제어할 핀 번호 설정 
-SERVO_PIN = 18
+SERVO_PIN = 13
 
 # 불필요한 warning 제거
 GPIO.setwarnings(False)

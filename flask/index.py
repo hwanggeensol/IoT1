@@ -16,10 +16,13 @@ GPIO.setup(18, GPIO.OUT)
 p = GPIO.PWM(18, 100)
 pin = False
 
+DOOR = 13
+GPIO.setup(DOOR, GPIO.OUT)
+do = GPIO.PWM(DOOR,50)
+
 Frq = [ 392, 392, 440, 440, 392, 392, 330, 330, 392, 392, 330, 330, 294, 294, 294, 294,
         392, 392, 440, 440, 392, 392, 330, 330, 392, 330, 294, 330, 262, 262, 262]
 speed = 0.5
-
 
 @app.route("/")
 def home():
@@ -43,16 +46,16 @@ def led():
 
 @app.route("/music")
 def music():
-    p.start(10)  # PWM 시작 , 듀티사이클 10 (충분)
-
     try:
-        for fr in Frq:
-            p.ChangeFrequency(fr)    #주파수를 fr로 변경
-            time.sleep(speed)
-             
-    except KeyboardInterrupt:       # 키보드 Ctrl+C 눌렀을때 예외발생 
-        pass                       # 무한반복을 빠져나와 아래의 코드를 실행  
-    p.stop()                        # PWM을 종료
+        do.start(0)
+        do.ChangeDutyCycle(7.5)
+        time.sleep(3)
+        do.ChangeDutyCycle(2.5)
+        time.sleep(1)
+    except:
+        pass
+    do.stop()
+    GPIO.cleanup()
 
 
 if __name__ == "__main__":

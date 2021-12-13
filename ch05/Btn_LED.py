@@ -6,7 +6,7 @@ import time
 
 # 사용할 GPIO핀의 번호를 선정합니다.
 button_pin = 15
-led_pin = 4
+led_pin = 12
  # 불필요한 warning 제거
 GPIO.setwarnings(False) 
 # GPIO핀의 번호 모드 설정
