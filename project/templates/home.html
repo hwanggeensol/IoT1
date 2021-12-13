@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HOME</h1>
+        </div>
+        <div class="main">
+           
+            <div id="time" class="time"></div>
+            
+            
+            
+        </div>
+        <div style="text-align:center;"> 
+                <button onclick="location.href='visitor'"><h2>방문자</h2></button>
+                
+            
+                
+                <button onclick="location.href='control'"><h2>제어</h2></button>
+            </div>
+       
+        <div id="result">
+        </div>
+    </div>
+    <script>
+        function setClock(){
+    var dateInfo = new Date(); 
+    var hour = modifyNumber(dateInfo.getHours());
+    var min = modifyNumber(dateInfo.getMinutes());
+    var sec = modifyNumber(dateInfo.getSeconds());
+
+    document.getElementById("time").innerHTML = hour + ":" + min  + ":" + sec;
+   
+}
+function modifyNumber(time){
+    if(parseInt(time)<10){
+        return "0"+ time;
+    }
+    else
+        return time;
+}
+window.onload = function(){
+    setClock();
+    setInterval(setClock,1000); //1초마다 setClock 함수 실행
+}
+    </script>
+</body>
+</html>

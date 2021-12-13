@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>VISITOR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>방문자</h2>
+        </div></div>
+        <div style="text-align:center;">
+            <iframe src="http://localhost:8080/stream"width="700px"height="500px"></iframe>
+        </div>
+        
+        <div style="text-align:center;">
+            <br><button onclick="music()">문열림</button>
+            <button onClick="location.href='/'">홈으로</button>
+        </div>
+    </div> 
+
+    <script>  
+        function music(){
+            fetch("/music")
+            .then(response=> response.text())
+            .then(data=> {
+                console.log(data);
+                let result = document.querySelector("#result");
+                if(data=="ok"){  
+                    result.innerHTML = "<h1>문이 열렸습니다</h1>";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

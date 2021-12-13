@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CONTROL</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">  
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>조명</h1>
+        </div>
+        
+        <div class="container1">
+            <h3>거실</h3>
+            <br>
+        
+            <label class="switch1">           
+                <input type="checkbox" onclick="room1(this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="container2">
+            <h3>안방</h3>
+            <br>
+        
+            <label class="switch2">           
+                <input type="checkbox" onclick="room2(this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="container3">
+            <h3>작은방</h3>
+            <br>
+        
+            <label class="switch3">           
+                <input type="checkbox" onclick="room3(this)">
+                <span class="slider round"></span>
+            </label>
+        </div>   
+        
+        <br><br><button onClick="location.href='/'">홈으로</button>
+    </div>
+
+        <script>
+            function room1(element)
+            {   
+                
+                fetch("/control/1")
+                
+            }
+
+            function room2(element)
+            {
+                fetch("/control/2")
+            }
+
+            function room3(element)
+            {
+                fetch("/control/3")
+            }
+        </script>
+    
+</body>
+</html>
